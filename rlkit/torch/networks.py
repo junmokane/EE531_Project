@@ -159,14 +159,20 @@ class RecurrentEncoder(FlattenMlp):
         task, seq, feat = in_.size()
         out = in_.view(task * seq, feat)
 
+        print(task, seq, feat)
+
         # embed with MLP
         for i, fc in enumerate(self.fcs):
             out = fc(out)
             out = self.hidden_activation(out)
 
+        print(out.size())
+
         out = out.view(task, seq, -1)
+        print(out.size(), self.hidden.size())
         out, (hn, cn) = self.lstm(out, (self.hidden, torch.zeros(self.hidden.size()).to(ptu.device)))
         self.hidden = hn
+        print(self.hidden.size())
         # take the last hidden state to predict z
         out = out[:, -1, :]
 

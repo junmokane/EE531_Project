@@ -15,7 +15,8 @@ def plot_one(exp_names, csv_slices, feature, env_name, re_feature):
     plt.title(env_name, fontsize=17)
     plt.xlabel("iteration", fontsize=15)
     plt.xticks(fontsize=13)
-    plt.ylabel(feature, fontsize=15)
+    # plt.ylabel(feature, fontsize=15)
+    plt.ylabel('average return', fontsize=15)
     plt.yticks(fontsize=13)
 
 
