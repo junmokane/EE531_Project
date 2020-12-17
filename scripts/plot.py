@@ -7,17 +7,20 @@ from collections import defaultdict
 
 
 def plot_one(exp_names, csv_slices, feature, env_name, re_feature):
-    fig = plt.figure(figsize=(8, 8))
+    fig = plt.figure(figsize=(10, 10))
+    ax = fig.add_subplot(111)
     fig.canvas.set_window_title(feature)
     for i, csv_slice in enumerate(csv_slices):
-        plt.plot(csv_slice[re_feature[i]].to_numpy())
-    plt.legend(exp_names)
-    plt.title(env_name, fontsize=17)
-    plt.xlabel("iteration", fontsize=15)
-    plt.xticks(fontsize=13)
+        plt.plot(csv_slice[re_feature[i]].to_numpy(), linewidth=3)
+        ax.yaxis.get_offset_text().set_fontsize(30)
+    plt.legend(exp_names, fontsize=30, fancybox=True)
+    plt.title(env_name, fontsize=30)
+    plt.xlabel("iteration", fontsize=30)
+    plt.xticks(fontsize=30)
     # plt.ylabel(feature, fontsize=15)
-    plt.ylabel('average return', fontsize=15)
-    plt.yticks(fontsize=13)
+    plt.ylabel('average return', fontsize=30)
+    plt.yticks(fontsize=30)
+    plt.tight_layout()
 
 
 def plot_data(args):
